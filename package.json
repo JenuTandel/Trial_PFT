@@ -22,11 +22,8 @@
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "oidc-client": "^1.11.5",
-    "oidc-react": "^3.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-oidc": "^1.0.3",
-    "react-oidc-context": "^3.1.0",
     "react-redux": "^9.1.1",
     "react-router-dom": "^6.22.3",
     "yup": "^1.4.0"
