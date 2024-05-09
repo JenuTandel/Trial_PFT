@@ -1,18 +1,41 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-const initialState: any = {
-    user: null
+function getUserFromLocalStorage() {
+  try {
+    return localStorage.getItem("access_token");
+  } catch (error) {
+    console.error("No user found, Please Login Again ");
+  }
+}
+function getRoleFromLocalStorage() {
+  try {
+    return localStorage.getItem("role");
+  } catch (error) {
+    console.error("Please Login Again ");
+  }
+}
+const initialState: {
+  access_token: string | null | undefined,
+  role: string | null | undefined
+} = {
+  access_token: getUserFromLocalStorage(),
+  role: getRoleFromLocalStorage()
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<any>) => {
-      state.user = action.payload;
+    setToken: (state, action: PayloadAction<string>) => {
+      state.access_token = action.payload;
+      localStorage.setItem('access_token', action.payload);
+    },
+    setRole: (state, action: PayloadAction<string>) => {
+      state.role = action.payload;
+      localStorage.setItem('role', action.payload);
     },
   },
 });
-export const isAuthSelector = (state: { auth: { user: null; }; }) => state.auth.user !== null; 
-export const { setUser } = authSlice.actions;
+
+export const { setToken, setRole } = authSlice.actions;
 export const authReducer = authSlice.reducer;

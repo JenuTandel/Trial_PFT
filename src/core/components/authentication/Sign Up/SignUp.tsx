@@ -3,15 +3,15 @@ import { showNotification } from '@mantine/notifications';
 import { useState } from 'react';
 import { signUpFormConstants } from '../../../utility/constants/SignUp.constant';
 import { ISignUpForm } from '../../../utility/models/signUp.model';
-import AuthService from '../../../utility/services/auth-service';
 import { useSignUpSubmitMutation } from '../../../utility/services/signUp.service';
 import SignUpBg from './SignUpBg';
 import { SignUpForm } from './SignUpForm';
+import { login } from '../../../utility/services/auth-service';
 
 export default function SignUp() {
   const [signUpSubmit] = useSignUpSubmitMutation();
   const [resetForm, setResetForm] = useState<boolean>(false);
-  const authService = AuthService();
+  // const authService = AuthService();
   const handleSignUpSubmit = (signUpDetails: ISignUpForm) => {
     signUpSubmit(signUpDetails as ISignUpForm).then((response: any) => {
       if ('data' in response) {
@@ -22,7 +22,7 @@ export default function SignUp() {
             color: 'green',
           });
           setResetForm(true);
-          authService.login();
+          login();
         } else {
           showNotification({
             title: 'Error',
