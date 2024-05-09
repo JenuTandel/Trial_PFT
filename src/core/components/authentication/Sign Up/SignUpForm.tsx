@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   Anchor,
   Box,
@@ -11,29 +12,26 @@ import {
 } from '@mantine/core';
 import { useForm, yupResolver } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
+import { useEffect } from 'react';
 import { signUpInitialValues } from '../../../utility/constants/SignUp.constant';
 import {
   ISignUpForm,
   ISignUpFormProps,
 } from '../../../utility/models/signUp.model';
-import AuthService from '../../../utility/services/auth-service';
 import { signUpFormValidationSchema } from '../../../utility/validations/signUp.validation';
-import { useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 
 
 export const SignUpForm: React.FC<ISignUpFormProps> = ({
   onSignUpSubmit,
   resetForm,
 }) => {
-  const { loginWithRedirect, loginWithPopup } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     if (resetForm) {
       signUpForm.reset();
     }
   }, [resetForm]);
-  const authService = AuthService();
   const initialSignUpValues: ISignUpForm = signUpInitialValues;
   const signUpForm = useForm({
     initialValues: {
