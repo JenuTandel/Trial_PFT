@@ -71,6 +71,11 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/callback" element={<AuthCallback />} />
+      <Route element={<PublicRoute />}>
+        <Route path="/sign-up" element={<SignUp />} />
+      </Route>
+      <Route path="*" element={<div>no page found</div>} />
+
       {/* {role ? ( */}
       <Route element={<ProtectedRoute />}>
         <Route Component={Admin}>
@@ -128,10 +133,7 @@ export const AppRoutes = () => {
           }
         ></Route>
       </Route>
-      <Route element={<PublicRoute />}>
-        <Route path="/sign-up" element={<SignUp />} />
-      </Route>
-      <Route path="*" element={<div>no page found</div>} />
+
     </Routes>
   );
 }
