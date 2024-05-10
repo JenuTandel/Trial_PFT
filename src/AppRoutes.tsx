@@ -66,6 +66,7 @@ export const AppRoutes = () => {
   // ];
 
   const role = useAppSelector((state) => state.auth.role);
+  console.log("App Routes");
 
   return (
     <Routes>

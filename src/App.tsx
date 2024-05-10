@@ -7,6 +7,8 @@ import { resolver, theme } from './core/utility/constants/core.constant';
 import { store } from './store/store';
 
 function App() {
+  console.log("app called");
+
   return (
     <Auth0Provider clientId='7r31d0stc7uRmxV4ImSuKhiSdaNWsxFM' domain='dev-vf8j6fx765bq08e6.us.auth0.com' authorizationParams={{ redirect_uri: 'http://localhost:5173/callback' }}>
       <Provider store={store}>
