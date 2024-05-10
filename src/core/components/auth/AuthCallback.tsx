@@ -10,32 +10,28 @@ function AuthCallback() {
   const navigate = useNavigate();
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   console.log("Auth Callback");
+
   useEffect(() => {
     console.log("useEffect");
     if (!user) {
       handleAfterLogin();
     }
-    function handleAfterLogin() {
+
+    async function handleAfterLogin() {
+      debugger;
       console.log("After login");
-      try {
-        console.log("Authenticated", isAuthenticated);
-        setTimeout(async () => {
-          const claims = await getAccessTokenSilently();
-          console.log('User:', claims);
-          dispatch(setToken(claims));
-          dispatch(setRole('Admin'))
-          navigate('/');
-        }, 4000);
+      console.log("Authenticated", isAuthenticated);
 
-        // localStorage.setItem('user', claims)
-        // localStorage.setItem('role', 'Admin')
-
-
-      } catch (error) {
-        console.error(error);
+      if (isAuthenticated) {
+        debugger;
+        const claims = await getAccessTokenSilently();
+        console.log('User:', claims);
+        dispatch(setToken(claims));
+        dispatch(setRole('Admin'))
+        navigate('/');
       }
+
     }
-    // navigate('/');
   }, [isAuthenticated, getAccessTokenSilently]);
 
   return <div>Loading...</div>;
