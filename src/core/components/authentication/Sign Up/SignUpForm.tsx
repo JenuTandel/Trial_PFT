@@ -1,4 +1,3 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import {
   Anchor,
   Box,
@@ -26,7 +25,7 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({
   onSignUpSubmit,
   resetForm,
 }) => {
-  const { loginWithRedirect } = useAuth0();
+  // const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
 
   useEffect(() => {
