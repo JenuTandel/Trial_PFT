@@ -7,7 +7,7 @@ function AuthCallback() {
   debugger
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, getAccessTokenSilently, isLoading, error } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   // useEffect(() => {
   // if (!isLoading && !error && isAuthenticated) {
