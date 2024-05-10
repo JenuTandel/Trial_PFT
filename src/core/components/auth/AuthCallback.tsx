@@ -9,6 +9,7 @@ function AuthCallback() {
   const user = useAppSelector((state) => state.auth.access_token)
   const navigate = useNavigate();
   const { isAuthenticated, isLoading, error, getAccessTokenSilently } = useAuth0();
+  console.log("Auth callback");
 
   useEffect(() => {
     async function handleAfterLogin() {

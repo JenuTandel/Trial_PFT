@@ -1,9 +1,9 @@
 import { Container, Flex, Paper, Title } from '@mantine/core';
-import DataTable from '../../../shared/components/DataTable';
-import { useGetUserListDataQuery } from '../utility/services/admin.service';
 import { useEffect, useState } from 'react';
+import DataTable from '../../../shared/components/DataTable';
 import Pagination from '../../../shared/components/Pagination';
 import { IUserData } from '../utility/models/admin.model';
+import { useGetUserListDataQuery } from '../utility/services/admin.service';
 import { approvedRequestTableDataColumns } from './TableDataColumns';
 
 function ApprovedRequests() {
@@ -12,6 +12,9 @@ function ApprovedRequests() {
   const [totalCount, setTotalCount] = useState<number>(1);
   const [isResponse, setIsResponse] = useState<boolean>(false)
   const pageSize = 10;
+
+  console.log("Approved Requests");
+
 
   // get the approved userList
   const { data: res } = useGetUserListDataQuery({

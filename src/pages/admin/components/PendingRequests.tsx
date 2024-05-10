@@ -22,6 +22,7 @@ function PendingRequests() {
   const [totalCount, setTotalCount] = useState<number>(1);
   const [isResponse, setIsResponse] = useState<boolean>(false)
   const pageSize = 10;
+  console.log("Pending Requests");
 
   // for total number of selected user
   const adminSelectedData: any = Object.values(selectedData).flat();
