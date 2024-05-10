@@ -14,7 +14,6 @@ import PendingRequests from './pages/admin/components/PendingRequests';
 import RejectedRequests from './pages/admin/components/RejectedRequests';
 import User from './pages/user/User';
 import ProtectedRoute from './routes/ProtectedRoutes';
-import PublicRoute from './routes/PublicRoutes';
 import { useAppSelector } from './store/store';
 
 export const AppRoutes = () => {
@@ -71,10 +70,10 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="*" element={<div>no page found</div>} />
+      {/* <Route element={<PublicRoute />}> */}
+      <Route path="/sign-up" element={<SignUp />} />
       <Route path="/callback" element={<AuthCallback />} />
-      <Route element={<PublicRoute />}>
-        <Route path="/sign-up" element={<SignUp />} />
-      </Route>
+      {/* </Route> */}
       {/* {role ? ( */}
       <Route element={<ProtectedRoute />}>
         <Route Component={Admin}>
