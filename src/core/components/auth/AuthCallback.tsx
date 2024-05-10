@@ -15,17 +15,21 @@ function AuthCallback() {
     if (!user) {
       handleAfterLogin();
     }
-    async function handleAfterLogin() {
+    function handleAfterLogin() {
       console.log("After login");
       try {
         console.log("Authenticated", isAuthenticated);
-        const claims = await getAccessTokenSilently();
-        console.log('User:', claims);
+        setTimeout(async () => {
+          const claims = await getAccessTokenSilently();
+          console.log('User:', claims);
+          dispatch(setToken(claims));
+          dispatch(setRole('Admin'))
+          navigate('/');
+        }, 4000);
+
         // localStorage.setItem('user', claims)
         // localStorage.setItem('role', 'Admin')
-        dispatch(setToken(claims));
-        dispatch(setRole('Admin'))
-        navigate('/');
+
 
       } catch (error) {
         console.error(error);
