@@ -12,7 +12,7 @@ function PublicRoute() {
 
     console.log("pri");
 
-    return <>{!user ? <Outlet /> : <Navigate to="/sign-up" />}</>;
+    return <>{!user ? <Outlet /> : <Navigate to="/" />}</>;
 }
 
 export default PublicRoute;

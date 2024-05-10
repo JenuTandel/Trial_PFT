@@ -1,15 +1,15 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setRole, setToken } from '../../../features/auth/auth';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { userManager } from '../../utility/services/auth-service';
+import { setToken, setRole } from '../../../features/auth/auth';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function AuthCallback() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.access_token)
   const navigate = useNavigate();
   const { isAuthenticated, isLoading, error, getAccessTokenSilently } = useAuth0();
-  console.log("Auth callback");
 
   useEffect(() => {
     async function handleAfterLogin() {

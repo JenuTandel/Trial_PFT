@@ -1,6 +1,7 @@
 import {
   UserManager,
-  WebStorageStateStore
+  UserManagerSettings,
+  WebStorageStateStore,
 } from 'oidc-client';
 import {
   acrValues,
@@ -10,6 +11,7 @@ import {
   setAuthority,
 } from '../../../environments/environment';
 // import { setUser } from '../../../features/auth/auth';
+import { store } from '../../../store/store';
 
 export const userManager = new UserManager({
   userStore: new WebStorageStateStore({ store: window.localStorage }),
