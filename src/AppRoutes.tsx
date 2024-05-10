@@ -4,17 +4,17 @@ import {
 } from 'react-router-dom';
 import AuthorizedAdminRoute from './AuthorizedAdminRoute';
 import AuthorizedUserRoute from './AuthorizedUserRoute';
+import AuthCallback from './core/components/auth/AuthCallback';
 import SignUp from './core/components/authentication/Sign Up/SignUp';
+import { PftRoutes } from './core/utility/enums/core.enum';
 import Admin from './pages/admin/Admin';
 import ApprovedRequests from './pages/admin/components/ApprovedRequests';
 import PendingRequests from './pages/admin/components/PendingRequests';
+import RejectedRequests from './pages/admin/components/RejectedRequests';
 import User from './pages/user/User';
 import ProtectedRoute from './routes/ProtectedRoutes';
 import PublicRoute from './routes/PublicRoutes';
 import { useAppSelector } from './store/store';
-import AuthCallback from './core/components/auth/AuthCallback';
-import { PftRoutes } from './core/utility/enums/core.enum';
-import RejectedRequests from './pages/admin/components/RejectedRequests';
 
 export const AppRoutes = () => {
   //   const [role, setRole] = useState<string>('');
@@ -69,8 +69,8 @@ export const AppRoutes = () => {
 
   return (
     <Routes>
+      <Route path="*" element={<div>No Page</div>} />
       <Route path="/callback" element={<AuthCallback />} />
-      <Route path="*" element={<div>no page found</div>} />
       <Route element={<PublicRoute />}>
         <Route path="/sign-up" element={<SignUp />} />
 
