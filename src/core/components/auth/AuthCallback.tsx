@@ -10,18 +10,15 @@ function AuthCallback() {
   const navigate = useNavigate();
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   console.log("Auth Callback");
-
   useEffect(() => {
     console.log("useEffect");
     if (!user) {
       handleAfterLogin();
     }
-
     async function handleAfterLogin() {
       debugger;
       console.log("After login");
       console.log("Authenticated", isAuthenticated);
-
       if (isAuthenticated) {
         debugger;
         const claims = await getAccessTokenSilently();
@@ -30,7 +27,6 @@ function AuthCallback() {
         dispatch(setRole('Admin'))
         navigate('/');
       }
-
     }
   }, [isAuthenticated, getAccessTokenSilently]);
 
