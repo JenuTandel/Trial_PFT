@@ -9,8 +9,6 @@ function AuthCallback() {
   const navigate = useNavigate();
   const { getAccessTokenSilently } = useAuth0();
 
-  // useEffect(() => {
-  // if (!isLoading && !error && isAuthenticated) {
   const handleAfterLogin = async () => {
     try {
       const claims = await getAccessTokenSilently();
@@ -23,8 +21,6 @@ function AuthCallback() {
   };
 
   handleAfterLogin();
-  // }
-  // }, [isLoading, isAuthenticated, getAccessTokenSilently, dispatch, navigate, error]);
 
   return <div>Loading...</div>;
 }

@@ -13,6 +13,7 @@ import {
 import { useForm, yupResolver } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { signUpInitialValues } from '../../../utility/constants/SignUp.constant';
 import {
   ISignUpForm,
@@ -26,6 +27,7 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({
   resetForm,
 }) => {
   const { loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (resetForm) {
@@ -51,6 +53,12 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({
     signUpSubmitValues.phoneNumber = signUpSubmitValues.phoneNumber.toString();
     onSignUpSubmit(signUpSubmitValues);
   };
+
+  const handleAnchorTag = () => {
+    localStorage.setItem("user", "token");
+    localStorage.setItem("role", "Admin");
+    navigate("/");
+  }
 
   const largeScreen = useMediaQuery('(min-width: 1400px)');
   return (
@@ -146,9 +154,12 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({
           Already have an account?
         </Text>
         {/* Redirection link */}
-        <Anchor fw={700} underline="never" onClick={() => loginWithRedirect().then((res) => {
+        {/* <Anchor fw={700} underline="never" onClick={() => loginWithRedirect().then((res) => {
           console.log("jigar", res);
         })}>
+          Sign in Here
+        </Anchor> */}
+        <Anchor fw={700} underline="never" onClick={handleAnchorTag}>
           Sign in Here
         </Anchor>
       </Flex>
