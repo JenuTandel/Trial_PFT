@@ -6,7 +6,7 @@ interface IProps {
   Children: React.ComponentType,
   setRole: React.Dispatch<React.SetStateAction<string>>
 }
-function Master({ Children, setRole }: IProps) {
+function Master({ Children }: IProps) {
   const navigate = useNavigate();
   const isAuthenticated = localStorage.getItem('user');
   const role = localStorage.getItem('role');
@@ -16,7 +16,7 @@ function Master({ Children, setRole }: IProps) {
       navigate(PftRoutes.SIGNUP);
     }
     if (role) {
-      setRole(role);
+      // setRole(role);
     }
   }, [isAuthenticated, navigate, role]);
   return isAuthenticated && role ? <Children /> : null;

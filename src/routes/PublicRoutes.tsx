@@ -8,11 +8,11 @@ import { useAppSelector } from "../store/store";
  */
 
 function PublicRoute() {
-    const user = useAppSelector((state) => state.auth.access_token);
+    const access_token = useAppSelector((state) => state.auth.access_token);
 
-    console.log("pri");
+    console.log("public");
 
-    return <>{!user ? <Outlet /> : <Navigate to="/" />}</>;
+    return <>{!access_token ? <Outlet /> : <Navigate to="/" />}</>;
 }
 
 export default PublicRoute;

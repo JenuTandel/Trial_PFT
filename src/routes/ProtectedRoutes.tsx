@@ -2,14 +2,14 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAppSelector } from "../store/store";
 
 export default function ProtectedRoute() {
-    const user = useAppSelector((state) => state.auth.access_token);
+    const access_token = useAppSelector((state) => state.auth.access_token);
 
     const location = useLocation();
-    console.log("pro");
+    console.log("protected");
 
     return (
         <>
-            {user ? (
+            {access_token ? (
                 <Outlet />
             ) : (
                 <Navigate to="/sign-up" replace state={{ path: location.pathname }} />

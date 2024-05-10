@@ -11,7 +11,12 @@ function AuthCallback() {
   const { isAuthenticated, isLoading, error, getAccessTokenSilently } = useAuth0();
   console.log("Auth Callback");
   useEffect(() => {
+    console.log("useEffect");
+    if (!user) {
+      handleAfterLogin();
+    }
     async function handleAfterLogin() {
+      console.log("After login");
       try {
         if (!isLoading && !error && isAuthenticated) {
           const claims = await getAccessTokenSilently();
@@ -26,9 +31,7 @@ function AuthCallback() {
         console.error(error);
       }
     }
-    if (!user) {
-      handleAfterLogin();
-    }
+    // navigate('/');
   }, [isAuthenticated, isLoading, error, getAccessTokenSilently, navigate]);
 
   return <div>Loading...</div>;

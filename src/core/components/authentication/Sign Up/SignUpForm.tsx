@@ -146,7 +146,9 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({
           Already have an account?
         </Text>
         {/* Redirection link */}
-        <Anchor fw={700} underline="never" onClick={() => loginWithRedirect()}>
+        <Anchor fw={700} underline="never" onClick={() => loginWithRedirect().then((res) => {
+          console.log("jigar", res);
+        })}>
           Sign in Here
         </Anchor>
       </Flex>
