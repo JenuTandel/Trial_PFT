@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setRole, setToken } from '../../../features/auth/auth';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
@@ -10,7 +10,7 @@ function AuthCallback() {
   const navigate = useNavigate();
   const { isAuthenticated, isLoading, error, getAccessTokenSilently } = useAuth0();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     async function handleAfterLogin() {
       try {
         if (!isLoading && !error && isAuthenticated) {
