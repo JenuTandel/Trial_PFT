@@ -8,7 +8,7 @@ function AuthCallback() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.access_token)
   const navigate = useNavigate();
-  const { isAuthenticated, isLoading, error, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   console.log("Auth Callback");
   useEffect(() => {
     console.log("useEffect");
@@ -18,7 +18,9 @@ function AuthCallback() {
     async function handleAfterLogin() {
       console.log("After login");
       try {
-        if (!isLoading && !error && isAuthenticated) {
+        console.log("try block");
+        if (isAuthenticated) {
+          console.log("Authenticated");
           const claims = await getAccessTokenSilently();
           // localStorage.setItem('user', claims)
           // localStorage.setItem('role', 'Admin')
@@ -32,7 +34,7 @@ function AuthCallback() {
       }
     }
     // navigate('/');
-  }, [isAuthenticated, isLoading, error, getAccessTokenSilently, navigate]);
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   return <div>Loading...</div>;
 }
