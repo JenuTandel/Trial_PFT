@@ -1,4 +1,5 @@
 import {
+  Navigate,
   Route,
   Routes
 } from 'react-router-dom';
@@ -70,7 +71,7 @@ export const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="*" element={<div>no page found</div>} />
+
       <Route element={<PublicRoute />}>
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/callback" element={<AuthCallback />} />
@@ -81,16 +82,11 @@ export const AppRoutes = () => {
         <Route Component={Admin}>
           <Route
             path="/"
-
             element={
               role === "Admin" ? (
-                // <AuthorizedUserRoute role={role}>
-                <PendingRequests />
-                // </AuthorizedUserRoute>
+                <Navigate to={PftRoutes.PENDING_REQUESTS} />
               ) : (
-                // <AuthorizedAdminRoute role={role}>
-                <ApprovedRequests />
-                // </AuthorizedAdminRoute>
+                <Navigate to={PftRoutes.APPROVED_REQUESTS} />
               )
             }
           ></Route>
@@ -120,15 +116,7 @@ export const AppRoutes = () => {
           ></Route>
         </Route>
       </Route>
-      {/* ) : ( */}
-      {/* <Route element={<ProtectedRoute role={role} />}> */}
       <Route Component={User}>
-        {/* <Route
-          path="/"
-          element={
-            
-          }
-        ></Route> */}
         <Route
           path="/jigar"
           element={
@@ -145,10 +133,9 @@ export const AppRoutes = () => {
             </AuthorizedUserRoute>
           }
         ></Route>
-        {/* <Route path="/job-application" Component={JobApplication}></Route> */}
       </Route>
-      {/* </Route> */}
-      {/* )} */}
+      <Route path="*" element={<div>no page found</div>} />
+
     </Routes>
   );
 }
