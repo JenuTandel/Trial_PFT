@@ -10,8 +10,8 @@ export const AppRoutes = () => {
   // const access_token = useAppSelector((state) => state.auth.access_token);
   // const role = useAppSelector((state) => state.auth.role);
 
-  const access_token = "token";
-  const role = "Admin";
+  const access_token = localStorage.getItem("user");
+  const role = localStorage.getItem("role")
   return (
     <Routes>
       {/* <Route path="/callback" Component={AuthCallback} /> */}
