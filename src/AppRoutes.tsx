@@ -71,8 +71,7 @@ export const AppRoutes = () => {
 
   return (
     <Routes>
-
-      <Route element={<PublicRoute />}>
+      <Route path="/" element={<PublicRoute />}>
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/callback" element={<AuthCallback />} />
 
