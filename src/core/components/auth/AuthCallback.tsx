@@ -1,30 +1,30 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setRole, setToken } from '../../../features/auth/auth';
 import { useAppDispatch } from '../../../store/store';
 
 function AuthCallback() {
+  debugger
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isAuthenticated, getAccessTokenSilently, isLoading, error } = useAuth0();
 
-  useEffect(() => {
-    if (!isLoading && !error && isAuthenticated) {
-      const handleAfterLogin = async () => {
-        try {
-          const claims = await getAccessTokenSilently();
-          dispatch(setToken(claims));
-          dispatch(setRole('Admin'));
-          navigate('/');
-        } catch (error) {
-          console.error('Error getting access token:', error);
-        }
-      };
-
-      handleAfterLogin();
+  // useEffect(() => {
+  // if (!isLoading && !error && isAuthenticated) {
+  const handleAfterLogin = async () => {
+    try {
+      const claims = await getAccessTokenSilently();
+      dispatch(setToken(claims));
+      dispatch(setRole('Admin'));
+      navigate('/');
+    } catch (error) {
+      console.error('Error getting access token:', error);
     }
-  }, [isLoading, isAuthenticated, getAccessTokenSilently, dispatch, navigate, error]);
+  };
+
+  handleAfterLogin();
+  // }
+  // }, [isLoading, isAuthenticated, getAccessTokenSilently, dispatch, navigate, error]);
 
   return <div>Loading...</div>;
 }
