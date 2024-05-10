@@ -1,5 +1,4 @@
 import {
-  Navigate,
   Route,
   Routes
 } from 'react-router-dom';
@@ -70,22 +69,27 @@ export const AppRoutes = () => {
 
   return (
     <Routes>
-      {/* <Route path="*" element={<div>no page found</div>} /> */}
+      <Route path="*" element={<div>no page found</div>} />
       <Route element={<PublicRoute />}>
-        <Route path='/' element={<Navigate to={'/sign-up'} />}></Route>
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/callback" element={<AuthCallback />} />
+
       </Route>
       {/* {role ? ( */}
       <Route element={<ProtectedRoute />}>
         <Route Component={Admin}>
           <Route
             path="/"
+
             element={
               role === "Admin" ? (
-                <Navigate to={PftRoutes.PENDING_REQUESTS} />
+                // <AuthorizedUserRoute role={role}>
+                <PendingRequests />
+                // </AuthorizedUserRoute>
               ) : (
-                <Navigate to={PftRoutes.APPROVED_REQUESTS} />
+                // <AuthorizedAdminRoute role={role}>
+                <ApprovedRequests />
+                // </AuthorizedAdminRoute>
               )
             }
           ></Route>
@@ -115,7 +119,15 @@ export const AppRoutes = () => {
           ></Route>
         </Route>
       </Route>
+      {/* ) : ( */}
+      {/* <Route element={<ProtectedRoute role={role} />}> */}
       <Route Component={User}>
+        {/* <Route
+          path="/"
+          element={
+            
+          }
+        ></Route> */}
         <Route
           path="/jigar"
           element={
@@ -132,8 +144,10 @@ export const AppRoutes = () => {
             </AuthorizedUserRoute>
           }
         ></Route>
+        {/* <Route path="/job-application" Component={JobApplication}></Route> */}
       </Route>
-
+      {/* </Route> */}
+      {/* )} */}
     </Routes>
   );
 }
